@@ -29,6 +29,8 @@ class RENDER_PT_ui(bpy.types.Panel):
         row = layout.row()
         row.prop(scene, "bz_audiofile", icon="SOUND")
         row = layout.row()
+        row.prop(scene, "bz_custom_name", icon="SCENE")
+        row = layout.row()
         row.prop(scene, "bz_audio_channel")
         row = layout.row()
         row.operator("sequencerextra.bz_audio_to_sequencer",
@@ -69,6 +71,12 @@ def initprop():
         name="Audio Path",
         description="Define path of the audio file",
         subtype="FILE_PATH",
+        )
+
+    bpy.types.Scene.bz_custom_name = bpy.props.StringProperty(
+        name="Visualizer name",
+        description="Define the name",
+        subtype="NONE",
         )
 
     bpy.types.Scene.bz_audio_channel = bpy.props.IntProperty(

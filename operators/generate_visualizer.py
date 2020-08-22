@@ -96,7 +96,7 @@ class RENDER_OT_generate_visualizer(bpy.types.Operator):
 
         count = 0
         while count < len(scene.objects):
-            if scene.objects[count].name.startswith("bz_bar"):
+            if scene.objects[count].name.startswith(scene.bz_custom_name):
                 scene.objects[count].select_set(True)
                 bpy.ops.object.delete()
             else:
@@ -106,7 +106,7 @@ class RENDER_OT_generate_visualizer(bpy.types.Operator):
         wm.progress_begin(0, 100.0)
 
         for i in range(0, bar_count):
-            name = "bz_bar" + (("%0" + digits + "d") % i)
+            name = scene.bz_custom_name + (("%0" + digits + "d") % i)
             mesh = bpy.data.meshes.new(name)
             bar = bpy.data.objects.new(name, mesh)
             scene.collection.objects.link(bar)
